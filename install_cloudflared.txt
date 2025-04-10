@@ -1,0 +1,27 @@
+wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64.deb
+sudo dpkg -i cloudflared-linux-arm64.deb
+cloudflared tunnel login
+cloudflared tunnel create my-home-pi
+#Tunnel credentials written to /home/mingenlee/.cloudflared/aeb6bacd-b954-4bec-ac4b-9fd811292b50.json. cloudflared chose this file based on where your origin certificate was found. Keep this file secret. To revoke these credentials, delete the tunnel.
+# Created tunnel my-home-pi with id aeb6bacd-b954-4bec-ac4b-9fd811292b50
+#create a configuration file /etc/cloudflared/config.yml
+tunnel: my-home-pi
+credentials-file: /home/mingenlee/.cloudflared/aeb6bacd-b954-4bec-ac4b-9fd811292b50.json
+
+ingress:
+  - hostname: www.riversstar.com
+    service: https://localhost:80
+  - service: http_status:404
+
+# run following command to create an entry in DNS record
+cloudflared tunnel route dns my-home-pi www.riversstar.com
+
+# create service for cloudflared at /etc/systemd/system/cloudflared.service
+sudo cloudflared service install
+sudo systemctl enable cloudflared
+sudo systemctl start cloudflared
+# 2025-04-08T19:29:59Z INF Using Systemd
+# 2025-04-08T19:30:01Z INF Linux service for cloudflared installed successfully
+
+# manually start the tunnel instead of using systemctl
+cloudflared tunnel run

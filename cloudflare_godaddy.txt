@@ -1,0 +1,19 @@
+A     pi5                     108.28.125.110     Proxied           Auto
+	
+A     riversstar.com          13.248.243.5       Proxied           Auto
+
+A     riversstar.com          76.223.105.230     Proxied           Auto
+
+CNAME _domainconnect          _domainconnect.gd.domaincontrol.com Proxied Auto
+
+CNAME pay                     paylinks.commerce.godaddy.com Proxied Auto
+
+CNAME sig1._domainkey          sig1.dkim.riversstar.com.at.icloudmailadmin.com Proxied Auto
+
+CNAME www                      riversstar.com Proxied Auto
+	
+MX    riversstar.com           mx02.mail.icloud.com DNS only Auto
+MX    riversstar.com           mx01.mail.icloud.com DNS only Auto
+	
+TXT   riversstar.com           "apple-domain=auFysXZO23s4pG2S" DNS only Auto
+TXT   riversstar.com           "v=spf1 include:icloud.com ~all" DNS only Auto
